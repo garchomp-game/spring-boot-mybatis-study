@@ -13,15 +13,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +3 src/main/resources/templates/list.html
+badd +1 src/main/java/dev/itboot/mb/controller/TeacherController.java
 badd +1 .
-badd +31 build.gradle
-badd +22 src/main/resources/templates/layout/layout.html
-badd +1 src/main/resources/application.properties
+badd +5 src/main/resources/application.properties
 argglobal
 %argdel
-set lines=43 columns=174
-edit src/main/resources/templates/layout/layout.html
+set lines=49 columns=191
+edit src/main/java/dev/itboot/mb/controller/TeacherController.java
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -38,8 +36,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 87 + 87) / 174)
-exe 'vert 2resize ' . ((&columns * 86 + 87) / 174)
+exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -51,17 +49,17 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 22 - ((21 * winheight(0) + 20) / 40)
+let s:l = 1 - ((0 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 22
-normal! 054|
+keepjumps 1
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("build.gradle", ":p")) | buffer build.gradle | else | edit build.gradle | endif
+if bufexists(fnamemodify("src/main/resources/application.properties", ":p")) | buffer src/main/resources/application.properties | else | edit src/main/resources/application.properties | endif
 if &buftype ==# 'terminal'
-  silent file build.gradle
+  silent file src/main/resources/application.properties
 endif
 setlocal fdm=manual
 setlocal fde=0
@@ -73,15 +71,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 25 - ((23 * winheight(0) + 20) / 40)
+let s:l = 5 - ((4 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 25
-normal! 073|
+keepjumps 5
+normal! 040|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 87 + 87) / 174)
-exe 'vert 2resize ' . ((&columns * 86 + 87) / 174)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
