@@ -14,12 +14,23 @@ else
   set shortmess=aoO
 endif
 badd +1 src/main/java/dev/itboot/mb/controller/TeacherController.java
-badd +1 .
-badd +5 src/main/resources/application.properties
+badd +1 ~/.config/nvim/lua/custom/chadrc.lua
+badd +5 ~/.config/nvim/lua/custom/init.lua
+badd +47 ~/.config/nvim/lua/core/mappings.lua
+badd +27 ~/.config/nvim/lua/custom/mappings/init.lua
+badd +20 src/main/java/dev/itboot/mb/model/Teacher.java
+badd +45 src/main/java/dev/itboot/mb/repository/TeacherMapper.java
+badd +1 src/main/java/dev/itboot/mb/service/TeacherService.java
+badd +264 ~/workspace/spring-boot-memo/memo.md
+badd +17 ~/.config/nvim/lua/custom/plugins/configs/lspconfig.lua
+badd +1 ~/.config/nvim/lua
+badd +1 ~/.config/nvim/lua/custom/plugins/configs/null-ls.lua
 argglobal
 %argdel
 set lines=49 columns=191
-edit src/main/java/dev/itboot/mb/controller/TeacherController.java
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit src/main/java/dev/itboot/mb/service/TeacherService.java
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -49,18 +60,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 34 - ((33 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 34
+normal! 08|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/main/resources/application.properties", ":p")) | buffer src/main/resources/application.properties | else | edit src/main/resources/application.properties | endif
+if bufexists(fnamemodify("~/workspace/spring-boot-memo/memo.md", ":p")) | buffer ~/workspace/spring-boot-memo/memo.md | else | edit ~/workspace/spring-boot-memo/memo.md | endif
 if &buftype ==# 'terminal'
-  silent file src/main/resources/application.properties
+  silent file ~/workspace/spring-boot-memo/memo.md
 endif
+balt src/main/java/dev/itboot/mb/controller/TeacherController.java
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -71,14 +83,77 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 5 - ((4 * winheight(0) + 23) / 46)
+let s:l = 264 - ((44 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
-normal! 040|
+keepjumps 264
+normal! 024|
 wincmd w
 2wincmd w
+exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+tabnext
+edit ~/.config/nvim/lua/custom/plugins/configs/null-ls.lua
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 11 - ((10 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 11
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/.config/nvim/lua/custom/mappings/init.lua", ":p")) | buffer ~/.config/nvim/lua/custom/mappings/init.lua | else | edit ~/.config/nvim/lua/custom/mappings/init.lua | endif
+if &buftype ==# 'terminal'
+  silent file ~/.config/nvim/lua/custom/mappings/init.lua
+endif
+balt ~/.config/nvim/lua/core/mappings.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 61 - ((44 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 61
+normal! 07|
+wincmd w
 exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
 exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
 tabnext 1

@@ -2,18 +2,52 @@ package dev.itboot.mb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import dev.itboot.mb.repository.TeacherMapper;
+import dev.itboot.mb.model.Teacher;
+import dev.itboot.mb.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
 public class TeacherController {
-  private final TeacherMapper teacherMapper;
+  private final TeacherService teacherService;
   @GetMapping("/")
   public String getAllTeachers(Model model) {
-    model.addAttribute("page", teacherMapper.selectAll());
+    model.addAttribute("page", teacherService.selectAll());
     return "list";
+  }
+
+  @GetMapping("/add")
+  public String addTeacher(@ModelAttribute Teacher teacher) {
+    return "form";
+  }
+
+  @PostMapping("/process")
+  public String process(
+    @Validated @ModelAttribute Teacher teacher,
+    BindingResult result
+  ) {
+    if(result.hasErrors()) {
+      return "form";
+    }
+    teacherService.save(teacher);
+    return "redirect:/";
+  }
+
+  @GetMapping("/edit/{id}")
+  public String editTeacher(@PathVariable Long id, Model model) {
+    model.addAttribute("teacher", teacherService.selectByPrimaryKey(id));
+    return "form";
+  }
+  @GetMapping("/delete/{id}")
+  public String deleteTeacher(@PathVariable Long id) {
+    teacherService.deleteByPrimaryKey(id);
+    return "redirect:/";
   }
 }
