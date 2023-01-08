@@ -6,6 +6,10 @@ PUBLIC
 >
 <mapper namespace="dev.itboot.mb.repository.TeacherMapper">
 
+  <select id="count" resultType="Long">
+    SELECT COUNT(*) FROM teacher
+  </select>
+
   <select id="selectAll" resultType="Teacher">
     SELECT * FROM teacher
   </select>
@@ -17,7 +21,7 @@ PUBLIC
 
   <insert id="insert">
     INSERT INTO teacher(user_name, email)
-    VALUES{#{userName}, #{email}}
+    VALUES(#{userName}, #{email})
   </insert>
 
   <update id="updateByPrimaryKey">

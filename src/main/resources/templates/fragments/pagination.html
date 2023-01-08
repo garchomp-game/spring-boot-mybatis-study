@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <th:block th:fragment="pagination">
+      <div class="col-auto" th:if="${page.totalPages > 0}">
+        <nav>
+          <ui class="pagination">
+            <li class="page-item" th:if="${page.hasPrevious()}">
+              <a th:href="@{/(page=${page.number - 1})}" class="page-link">
+                前へ
+              </a>
+            </li>
+            <th:block
+              th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}"
+              th:switch="${page.number}"
+            >
+              <li class="page-item active" th:case="${i}">
+                <a href="" class="page-link" th:text="${i + 1}"></a>
+              </li>
+              <li class="page-item" th:case="*">
+                <a
+                  href=""
+                  class="page-link"
+                  th:href="@{/(page=${i})}"
+                  th:text="${i + 1}"
+                ></a>
+              </li>
+            </th:block>
+            <li class="page-item" th:if="${page.hasNext()}">
+              <a th:href="@{/(page=${page.number + 1})}" class="page-link">
+                次へ
+              </a>
+            </li>
+          </ui>
+        </nav>
+      </div>
+    </th:block>
+  </body>
+</html>
