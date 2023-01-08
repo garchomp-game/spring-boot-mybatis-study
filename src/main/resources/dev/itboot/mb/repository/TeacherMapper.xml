@@ -12,6 +12,9 @@ PUBLIC
 
   <select id="selectAll" resultType="Teacher">
     SELECT * FROM teacher
+    <if test="pageable.paged">
+      LIMIT #{pageable.offset}, #{pageable.pageSize}
+    </if>
   </select>
 
   <select id="selectByPrimaryKey" resultType="Teacher">
